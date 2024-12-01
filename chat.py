@@ -5,6 +5,16 @@ from datetime import datetime
 import streamlit as st
 from babel.dates import format_date
 
+# Define el directorio donde están los archivos JSON
+json_dir = "data/json"
+
+# Asegúrate de que el directorio exista antes de continuar
+if not os.path.exists(json_dir):
+    raise FileNotFoundError(f"El directorio {json_dir} no existe. Asegúrate de haber subido los archivos al repositorio.")
+
+# Cargar los mensajes desde los archivos JSON
+messages = load_json_files(json_dir)
+
 # Configuración de la página y estilos
 st.set_page_config(page_title="Chat de Instagram", layout="wide", initial_sidebar_state="collapsed")
 st.markdown("""
